@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import "./App.css";
+import Projet from "./Comp/Projet";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isValide: false,
+    };
+  }
+
+  validation = () => {
+    this.setState({ isValide: !this.state.isValide });
+    console.log(this.state.isValide);
+  };
+  render() {
+    return (
+      <div className="App">
+        <button className="glow-on-hover" onClick={this.validation}>
+          {this.state.isValide ? "Hide Profile" : "Show Profile"}
+        </button>
+        {this.state.isValide && <Projet />}
+      </div>
+    );
+  }
 }
 
 export default App;
